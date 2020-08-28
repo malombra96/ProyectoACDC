@@ -17,8 +17,16 @@
           <e p="CVSRL.cs" t="Include" />
           <e p="Código_para_los circuitos_AC" t="Include">
             <e p="AxisSin.cs" t="Include" />
-            <e p="CRSVsin.cs" t="Include" />
             <e p="DemoSin.cs" t="Include" />
+            <e p="PWMPC.cs" t="Include" />
+            <e p="PWMRL.cs" t="Include" />
+            <e p="PWMRLC.cs" t="Include" />
+            <e p="RCPsin.cs" t="Include" />
+            <e p="RCsin.cs" t="Include" />
+            <e p="RLCsin.cs" t="Include" />
+            <e p="RLPsin.cs" t="Include" />
+            <e p="RLsin.cs" t="Include" />
+            <e p="RRCsin.cs" t="Include" />
           </e>
           <e p="demo.cs" t="Include" />
           <e p="DownPanelBehaviour.cs" t="Include" />

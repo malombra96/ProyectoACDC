@@ -95,7 +95,9 @@ public class CVSRC : MonoBehaviour {
 
         Ad = 1 + (-1 / (R * c) * Tm);
         Bd = 1 / (R * c) * Tm;
-
+		
+        print("R = "+R+" AB = "+Ad+" Bd = "+Bd);
+        
         Xp = Ad * X + Bd * U;
 		Y  =  C * X +  D * U ;
 
