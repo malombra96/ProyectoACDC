@@ -17,6 +17,7 @@
           <e p="CVSRL.cs" t="Include" />
           <e p="Código_para_los circuitos_AC" t="Include">
             <e p="AxisSin.cs" t="Include" />
+            <e p="CRsin.cs" t="Include" />
             <e p="DemoSin.cs" t="Include" />
             <e p="PWMPC.cs" t="Include" />
             <e p="PWMRL.cs" t="Include" />
