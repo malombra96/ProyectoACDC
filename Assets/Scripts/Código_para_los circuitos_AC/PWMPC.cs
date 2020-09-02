@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
- 
+using UnityEngine.UI;
+
 /// Controla el comportamiento del circuito RC con fuente de voltaje
 /**
 	Control del circuito RC con fuente de voltaje el cual es modelado como un 
@@ -62,14 +63,21 @@ public class PWMPC : MonoBehaviour
     float frecuencia;
     // variable para almacenar el periodo de la señal 
     float periodo;
+    //slider para el valor util de la señal 
+    private Slider _slider;
+    //texto para saber el porcentaje de la señal util de pwm
+    private Text _text;
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
 /**
   Inicializa las varibles, toma los valores asignados a los componentes y crea los valores de las matrices
   de la ecuación de estado discreta
 */
-    void Start () {
-
+    void Start ()
+{
+	_text = GameObject.Find("Text_Slider").GetComponent<Text>();
+	_slider = GameObject.Find("Slider").GetComponent<Slider>();
+		
         ratio = OVc.transform.localScale.x / OVc.transform.localScale.y;
         iScale = I.transform.localScale;
         Vcpos = OVc.transform.position;
@@ -102,13 +110,15 @@ public class PWMPC : MonoBehaviour
 	void FixedUpdate()
 	{
 		axes.GetComponent<AxisSin>().ReferenceAssignment(U, vc, true);
-
+		float divisor = 100 / _slider.value;
+		//_text.text = _slider.value.ToString()+"%";
+		_text.text = Mathf.Round(_slider.value).ToString()+" %";
 		X = Xp;
 		w = OVs.localScale.y;
 		linetime += Time.deltaTime;
 		frecuencia = (w) / (2 * Mathf.PI);
 		periodo = 1 / frecuencia;
-		U = (linetime % periodo < periodo/2) ? 1 : 0;
+		U = (linetime % periodo < periodo/divisor) ? 1 : 0;
 		R = OR.localScale.y;
 
         Ad = 1 + (-1 / (R * c) * Tm);

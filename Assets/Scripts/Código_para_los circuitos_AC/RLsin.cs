@@ -113,8 +113,6 @@ public class RLsin : MonoBehaviour
 
         float i = 0.02f * (U-vl) / r;
 
-        //axes.GetComponent<AxisSin>().ReferenceAssignment(U,vl,true);
-
         if (vl > 0) {
             OVl.localScale = new Vector3(ratio * vl, vl, vl);
             OVl.position = Vlpos - new Vector3(0, vl / 2, 0);

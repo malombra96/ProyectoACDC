@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 
 /// Controla el comportamiento del demo
 /**
@@ -24,12 +26,13 @@ public class DemoSin : MonoBehaviour
 	// objeto unity aguja del medidor 
 	public Transform needle;
 	//varible interuptor para mostrar 1 o las 2 señales
-	public bool interuptor;
+	[SerializeField]private Toggle interruptor;
 // =====================================================================================================
 // inicializa todas las variables 
 // ======================================================================================================
 	void Start()
 	{
+		interruptor = GameObject.Find("interruptor").GetComponent<Toggle>();
 		linetime_s = 0;     						// linea de tiempo en cero
 		w = W.localScale.y;							// frecuencia angular iniciada 
 		frecuencia = (w) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
@@ -43,13 +46,13 @@ public class DemoSin : MonoBehaviour
     void FixedUpdate()
     {
 	    // enviamos los datos de cada señal cada 0.02 segundos 
-	    if (interuptor)
+	    if (interruptor.isOn)
 	    {
-		    axes.GetComponent<AxisSin>().ReferenceAssignment(signal_seno, signal_seno, true);
+		    axes.GetComponent<AxisSin>().ReferenceAssignment(signal_seno, signal_coseno, true);
 	    }
 	    else
 	    {
-		    axes.GetComponent<AxisSin>().ReferenceAssignment(signal_seno, signal_coseno, true);
+		    axes.GetComponent<AxisSin>().ReferenceAssignment(signal_seno, signal_seno, true);
 	    }
 	    linetime_c += Time.deltaTime;										//tiempo de la señal coseno
         linetime_s += Time.deltaTime;										//tiempo de la señal seno 
