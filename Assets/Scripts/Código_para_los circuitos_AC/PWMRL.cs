@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PWMRL : MonoBehaviour
 {
+	
   /// Objeto de Unity asociado al voltaje de la fuente
 	public Transform OVs;
 	/// Objeto de Unity asociado a la resistor
@@ -59,6 +61,10 @@ public class PWMRL : MonoBehaviour
     float frecuencia;
     // variable para almacenar el periodo de la señal 
     float periodo;
+    //slider para el valor util de la señal 
+    private Slider _slider;
+    //texto para saber el porcentaje de la señal util de pwm
+    private Text _text;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -68,6 +74,8 @@ public class PWMRL : MonoBehaviour
 */
     void Start()
     {
+	    _text = GameObject.Find("Text_Slider").GetComponent<Text>();
+	    _slider = GameObject.Find("Slider").GetComponent<Slider>();
 
         ratio = OVl.transform.localScale.x / OVl.transform.localScale.y;
         iScale = I.transform.localScale;
@@ -100,14 +108,16 @@ public class PWMRL : MonoBehaviour
 */
     void FixedUpdate()
     {
-
+	    float divisor = 100 / _slider.value;
+	    _text.text = Mathf.Round(_slider.value).ToString()+" %";
+	    
         linetime += Time.deltaTime;
         w = OVs.localScale.y;
 
         X = Xp;
         frecuencia = (w) / (2 * Mathf.PI);
         periodo = 1 / frecuencia;
-        U = (linetime % periodo < periodo/2) ? 1 : 0;
+        U = (linetime % periodo < periodo/divisor) ? 1 : 0;
         r = OR.localScale.y;
 
         Ad = 1 + (-(r / l) * Tm);

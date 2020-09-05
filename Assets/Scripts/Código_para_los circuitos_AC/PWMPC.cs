@@ -111,7 +111,6 @@ public class PWMPC : MonoBehaviour
 	{
 		axes.GetComponent<AxisSin>().ReferenceAssignment(U, vc, true);
 		float divisor = 100 / _slider.value;
-		//_text.text = _slider.value.ToString()+"%";
 		_text.text = Mathf.Round(_slider.value).ToString()+" %";
 		X = Xp;
 		w = OVs.localScale.y;

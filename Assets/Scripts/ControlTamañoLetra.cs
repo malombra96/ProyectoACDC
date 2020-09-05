@@ -50,6 +50,7 @@ public class ControlTamañoLetra : MonoBehaviour {
     void OnMouseOver() {
 
             Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+			print("esta sobre la letra");
         
     }
 // =====================================================================================================

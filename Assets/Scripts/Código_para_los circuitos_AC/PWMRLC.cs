@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /// Controla el comportamiento del circuito RLC con fuente de voltaje
@@ -75,7 +76,10 @@ public class PWMRLC : MonoBehaviour
     float frecuencia;
     // variable para almacenar el periodo de la señal 
     float periodo;
-
+    //slider para el valor util de la señal 
+    private Slider _slider;
+    //texto para saber el porcentaje de la señal util de pwm
+    private Text _text;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -85,7 +89,9 @@ public class PWMRLC : MonoBehaviour
 */
     void Start () {
 
-
+	_text = GameObject.Find("Text_Slider").GetComponent<Text>();
+	_slider = GameObject.Find("Slider").GetComponent<Slider>();
+	
         ratio = OVc.transform.localScale.x / OVc.transform.localScale.y;
         // iScale = I.transform.localScale;
         // Vcpos = OVc.transform.position;
@@ -134,12 +140,15 @@ public class PWMRLC : MonoBehaviour
 
 		axes.GetComponent<AxisSin>().ReferenceAssignment(uk, vc, true);
 
+		float divisor = 100 / _slider.value;
+		_text.text = Mathf.Round(_slider.value).ToString()+" %";
+		
 		w = OVs.localScale.y;
 		linetime += Time.deltaTime;
 		frecuencia = (w) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
 		periodo = 1 / frecuencia;					// obtenemos el periodo de las señales 
 		
-		uk = (linetime % periodo < periodo/2) ? 1 : 0;
+		uk = (linetime % periodo < periodo/divisor) ? 1 : 0;
 		R = OR.localScale.y;
 
 		a1 = R / l;

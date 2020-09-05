@@ -33,7 +33,7 @@ public class DemoSin : MonoBehaviour
 	void Start()
 	{
 		interruptor = GameObject.Find("interruptor").GetComponent<Toggle>();
-		linetime_s = 0;     						// linea de tiempo en cero
+		linetime_s = 0;     					              	// linea de tiempo en cero
 		w = W.localScale.y;							// frecuencia angular iniciada 
 		frecuencia = (w) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
         periodo = 1 / frecuencia;					// obtenemos el periodo de las señales 
