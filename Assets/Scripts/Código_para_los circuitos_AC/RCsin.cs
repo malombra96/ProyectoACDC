@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
  
 /// Controla el comportamiento del circuito RC con fuente de voltaje
@@ -52,10 +54,18 @@ public class RCsin : MonoBehaviour {
 	Vector3 Vcpos;
 
     // variables para generar la funcion que nos servira como entrada de las variables de estado
-	/// variable para la frecuencia angular
+	/// variable para la amplitud de la señal
 	private float w;
-	/// variable para el tiempod de la señal 
+	/// variable para la amplitud de la señal
+	private float A;
+	/// variable para el tiempo de la señal 
 	private float linetime;
+
+	/// variables para la amplitud de la frecuencia de la señal
+	public Slider sliderFrecuencia;
+	
+	//alamacenamiento de cambio de frecuencia 
+	public BehaviourReloj memoria;
 
 
 // =====================================================================================================
@@ -64,17 +74,21 @@ public class RCsin : MonoBehaviour {
   Inicializa las varibles, toma los valores asignados a los componentes y crea los valores de las matrices
   de la ecuación de estado discreta
 */
-    void Start () {
+    void Start ()
+{
 
+	//memoria = GetComponent<BehaviourReloj>();
         ratio = OVc.transform.localScale.x / OVc.transform.localScale.y;
         iScale = I.transform.localScale;
         Vcpos = OVc.transform.position;
 
 		w = OVs.localScale.y;
+		A = 0.9f * w + 0.0517f;
+		
 		linetime = 0;
         R = OR.localScale.y;
         c = 2;
-		U = Mathf.Sin(w * linetime);
+		U = A * Mathf.Sin(sliderFrecuencia.value * linetime);
 		Xp = 0;
 		Tm = 0.02f;
 		
@@ -84,43 +98,109 @@ public class RCsin : MonoBehaviour {
 		D = 0;
 
 		OVc.localScale = new Vector3(0,0,0);
-        
-	}
+		//memoria = sliderFrecuencia.value;
+}
 // =====================================================================================================
 /// Método FixedUpdate. Se ejecuta una vez cada 0.02 segundos
 /**
     Se encarga de graficar las variables de entrada y salida, lee las entradas y luego discretiza el modelo, 
     realiza la iteración del espacio de estados discreto
 */
-    
-void FixedUpdate () {
-        axes.GetComponent<AxisSin>().ReferenceAssignment(U,vc,true);
+private void Update()
+{
+	/*if (Math.Abs(sliderFrecuencia.value - memoria) < 0.01)
+	{
+		memoria = sliderFrecuencia.value;
+	}
+	else
+	{
+		if (sliderFrecuencia.value > memoria)
+		{
+			memoria = memoria + 0.005f;
+		}
+		else
+		{
+			memoria = memoria - 0.005f;
+		}
+	}*/
 
-		X = Xp;
-		w = OVs.localScale.y;
-		linetime += Time.deltaTime;
-		U = Mathf.Sin(w * linetime);
-		R = OR.localScale.y;
+	X = Xp;
+	w = OVs.localScale.y;
+	A = 2.04f * w - 1.327f;
+	linetime += Time.deltaTime;
+	U = A * Mathf.Sin(memoria.dato * linetime);
+	R = OR.localScale.y;
 
-        Ad = 1 + (-1 / (R * c) * Tm);
-        Bd = 1 / (R * c) * Tm;
+	Ad = 1 + (-1 / (R * c) * Tm);
+	Bd = 1 / (R * c) * Tm;
 
-        Xp = Ad * X + Bd * U;
-		Y  =  C * X +  D * U ;
+	Xp = Ad * X + Bd * U;
+	Y  =  C * X +  D * U ;
 
-		vc = Y;
+	vc = Y;
 
-        float i = 0.02f*(U - vc) / R;
+	float i = 0.02f*(U - vc) / R;
 
-        if (i > 0) {
-            I.localScale = new Vector3(i, iScale.y, iScale.z);
-        }
-        else {
-            I.localScale = new Vector3(-i, iScale.y, -iScale.z);
-        }
-		OVc.localScale = new Vector3(ratio * vc,vc,vc);
-        OVc.position = Vcpos - new Vector3(0, vc / 2, 0);
-       
+	if (i > 0) {
+		I.localScale = new Vector3((i*3)/6, iScale.y, iScale.z);
+	}
+	else {
+		I.localScale = new Vector3(-(i*3)/6, iScale.y, -iScale.z);
+	}
+	OVc.localScale = new Vector3(ratio * vc,vc,vc);
+	OVc.position = Vcpos - new Vector3(0, vc / 2, 0);
+        
+	axes.GetComponent<AxisSin>().ReferenceAssignment(U,vc,true);
+}
 
-    }
+// void FixedUpdate () {
+// 	
+//         if (Math.Abs(sliderFrecuencia.value - memoria) < 0.01)
+//         {
+//         	memoria = sliderFrecuencia.value;
+//         }
+//         else
+//         {
+//         	if (sliderFrecuencia.value > memoria)
+//         	{
+//         		memoria = memoria + 0.005f;
+//         	}
+//         	else
+//         	{
+//         		memoria = memoria - 0.005f;
+//         	}
+//         }
+//
+// 		X = Xp;
+// 		w = OVs.localScale.y;
+// 		A = 2.04f * w - 1.327f;
+// 		//print("A = "+A);
+// 		print("MEMORIA = "+memoria);
+// 		linetime += Time.deltaTime;
+// 		U = A * Mathf.Sin(memoria * linetime);
+// 		R = OR.localScale.y;
+//
+//         Ad = 1 + (-1 / (R * c) * Tm);
+//         Bd = 1 / (R * c) * Tm;
+//
+//         Xp = Ad * X + Bd * U;
+// 		Y  =  C * X +  D * U ;
+//
+// 		vc = Y;
+//
+//         float i = 0.02f*(U - vc) / R;
+//
+//         if (i > 0) {
+//             I.localScale = new Vector3((i*3)/6, iScale.y, iScale.z);
+//         }
+//         else {
+//             I.localScale = new Vector3(-(i*3)/6, iScale.y, -iScale.z);
+//         }
+// 		OVc.localScale = new Vector3(ratio * vc,vc,vc);
+//         OVc.position = Vcpos - new Vector3(0, vc / 2, 0);
+//         
+//         axes.GetComponent<AxisSin>().ReferenceAssignment(U,vc,true);
+//        
+//
+//     }
 }

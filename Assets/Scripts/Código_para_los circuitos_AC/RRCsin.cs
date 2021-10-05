@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// Controla el comportamiento del circuito RRC con fuente de voltaje
 /**
@@ -19,7 +20,9 @@ public class RRCsin : MonoBehaviour
 	public Transform OR2;
 	/// Objeto de Unity asociado al voltaje en el capacitor
 	public Transform OVc;
-
+	/// Objeto de Unity asociado a la corriente
+	public Transform I;
+	
 	/// Objeto de Unity que representa los ejes de graficación
 	public GameObject axes;
 	/// variable para almacenar el valor asignado al componente resistivo 1
@@ -48,14 +51,19 @@ public class RRCsin : MonoBehaviour
 	float b0;
 	/// variable para almacenar valor del coeficiente a0 del denominador de la función de transferencia continua
 	float a0;
-
+	/// vector para almacenar la proporción de la corriente
+	Vector3 iScale;
 	/// vector para almacenar la posición de la variable de salida
 	Vector3 Vcpos;
     // Variables para generar la señal de entrada a la matrices de estados 
-    // varible para almacenar la frecuencia angular 
+    // varible para almacenar la magnitud de la señal
     float w;
+    // varible para almacenar la magnitud de la señal
+    float A;
     // variable para almacenar la línea de tiempo 
     float linetime;
+    //variable para almacenar la magnitud de la frecuencia
+    public BehaviourReloj memoria;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -65,7 +73,7 @@ public class RRCsin : MonoBehaviour
 */
 	void Start () {
 
-
+		iScale = I.transform.localScale;
 		ratio = OVc.transform.localScale.x / OVc.transform.localScale.y;
 		Vcpos = OVc.transform.position;
 
@@ -74,9 +82,10 @@ public class RRCsin : MonoBehaviour
 		c = 1.5f;
 
         w = OVs.localScale.y;
+        A = 0.9f * w + 0.0517f;
         linetime = 0;
 
-		uk = Mathf.Sin(w * linetime);
+		uk = A * Mathf.Sin(memoria.dato * linetime);
 		uk_1 = uk;
 		yk = 0;
 		yk_1 = 0;
@@ -99,9 +108,9 @@ public class RRCsin : MonoBehaviour
 		axes.GetComponent<AxisSin>().ReferenceAssignment(uk,vc,true);
 
 		w = OVs.localScale.y;
-
+		A = 2.04f * w - 1.327f;
         linetime += Time.deltaTime;
-        uk = Mathf.Sin(w * linetime);
+        uk = A * Mathf.Sin(memoria.dato * linetime);
 		r = OR1.localScale.y;
 		R = OR2.localScale.y;
 
@@ -111,12 +120,24 @@ public class RRCsin : MonoBehaviour
 		yk = ((2/T-a0)*yk_1 + b0*uk + b0*uk_1) /(2/T+a0);
 
 		vc = 1*yk;
+		
+		float vr = uk * R / (R * r); 
+
+		float i = 0.02f*(uk - vr) / R;
 
 		yk_1 = yk;
 		uk_1 = uk;
+		
+		if (i > 0) {
+			I.localScale = new Vector3(iScale.x, i, iScale.z);
+		}
+		else {
+			I.localScale = new Vector3(-iScale.x, -i, iScale.z);
+		}
+
 
 		OVc.localScale = new Vector3(ratio * vc,vc,vc);
-		OVc.position = Vcpos - new Vector3(0, vc/2, 0);
+		//OVc.position = Vcpos - new Vector3(0, vc/2, 0);
 
 
 	}

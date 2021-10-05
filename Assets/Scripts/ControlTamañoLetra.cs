@@ -89,7 +89,7 @@ public class ControlTamañoLetra : MonoBehaviour {
 				}
 
 
-				transform.position = posFija - new Vector3(0,transform.localScale.y/2, 0);
+				//transform.position = posFija - new Vector3(0,transform.localScale.y/2, 0);
 
 
 			}

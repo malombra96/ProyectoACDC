@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RLsin : MonoBehaviour
 {
@@ -51,10 +53,17 @@ public class RLsin : MonoBehaviour
 
 
     // Variables para generar la señal de entrada a la matrices de estados 
-    // varible para almacenar la frecuencia angular 
+    // varible para la amplitud de la señal
     float w;
+    /// variable para la amplitud de la señal
+    private float A;
     // variable para almacenar la línea de tiempo 
     float linetime;
+    //variable para la amplitud de la frecuencia de la señal 
+    public Slider sliderFrecuencia; 
+    
+    //alamacenamiento de cambio de frecuencia 
+    public BehaviourReloj memoria;
 
 
 
@@ -72,12 +81,13 @@ public class RLsin : MonoBehaviour
         Vlpos = OVl.transform.position;
 
         w = OVs.localScale.y;
+        A = 0.9f * w + 0.0517f;
         linetime = 0;
 
         r = OR.localScale.y;
         l = 1;
 
-        U = Mathf.Sin(w * linetime);
+        U = A * Mathf.Sin(sliderFrecuencia.value * linetime);
         Xp = 0;
         Tm = 0.02f;
 
@@ -97,10 +107,13 @@ public class RLsin : MonoBehaviour
     {
 
         linetime += Time.deltaTime;
-        w = OVs.localScale.y;
 
+        w = OVs.localScale.y;
+        A = 2.04f * w - 1.327f;
+        //print("A = "+A);
+        //print("MEMORIA = "+ memoria);
         X = Xp;
-        U = Mathf.Sin(w * linetime);
+        U = A * Mathf.Sin(memoria.dato * linetime);
         r = OR.localScale.y;
 
         Ad = 1 + (-(r / l) * Tm);
@@ -114,24 +127,24 @@ public class RLsin : MonoBehaviour
         float i = 0.02f * (U-vl) / r;
 
         if (vl > 0) {
-            OVl.localScale = new Vector3(ratio * vl, vl, vl);
+            OVl.localScale = new Vector3(ratio * vl, (vl*3/4), vl);
             OVl.position = Vlpos - new Vector3(0, vl / 2, 0);
             Signs.localEulerAngles = new Vector3(90,-90,0);
             axes.GetComponent<AxisSin>().ReferenceAssignment(U,vl,true);
         }
         else
         {
-            OVl.localScale = -new Vector3(ratio * vl, vl, vl);
+            OVl.localScale = -new Vector3(ratio * vl, (vl*3/4), vl);
             OVl.position = Vlpos - new Vector3(0, -vl / 2, 0);
             Signs.localEulerAngles = new Vector3(90, 90, 0);
             axes.GetComponent<AxisSin>().ReferenceAssignment(U,vl,true);
         }
 
         if (i > 0) {
-            I.localScale = new Vector3(i, iScale.y, iScale.z);
+            I.localScale = new Vector3(i/2, iScale.y, iScale.z);
         }
         else {
-            I.localScale = new Vector3(-i, iScale.y, -iScale.z);
+            I.localScale = new Vector3(-i/2, iScale.y, -iScale.z);
         }
 
 

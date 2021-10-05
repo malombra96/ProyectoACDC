@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// Controla el comportamiento del circuito RL con fuente de corriente
 /**
@@ -65,11 +66,14 @@ public class RLPsin : MonoBehaviour
 	Vector3 iScaleR;
 
     // Variables para generar la función de entrada
-    // variable para almacenar la frecuencia angular
+    // variable para almacenar la magnitud de la señal 
     float w;
+    // variable para almacenar la magnitud de la señal 
+    float A;
     // variable para almacenar linea de tiempo
     float linetime;
-
+    // variable para almacelar la magnitud de la frecuencia de la señal 
+    public BehaviourReloj memoria;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -83,12 +87,13 @@ public class RLPsin : MonoBehaviour
 		iScaleR = OIr.transform.localScale;
 
         w = OIs.transform.localScale.y;
+        A = 0.9f * w + 0.0517f;
         linetime = 0;
 
 		R = OR.localScale.y;
 		l = 1;
 
-		uk = Mathf.Sin(w * linetime);;
+		uk = A * Mathf.Sin(memoria.dato * linetime);;
 		Tm = 0.02f;
 		Tmedios = 2 / Tm;
 
@@ -119,8 +124,9 @@ public class RLPsin : MonoBehaviour
 
 		R = OR.localScale.y;
 		w = OIs.localScale.y;
+		A = 0.442f * w - 0.7839f;
         linetime += Time.deltaTime;
-        uk = Mathf.Sin(w * linetime);
+        uk = A * Mathf.Sin(memoria.dato * linetime);
 
 		a0 = R/l;
 
@@ -136,13 +142,20 @@ public class RLPsin : MonoBehaviour
 		ukm1 = uk;
 		ykm1 = yk;
 
-		OIl.localScale = new Vector3 (iScaleL.x, il, iScaleL.z);
+		
 
 		if (ir > 0) {
 			OIr.localScale = new Vector3 (iScaleR.x, ir, iScaleR.z);
 		} 
 		else {
 			OIr.localScale = new Vector3 (-iScaleR.x, ir, iScaleR.z);
+		}
+
+		if (il > 0) {
+			OIl.localScale = new Vector3 (iScaleL.x, il, iScaleL.z);
+		} 
+		else {
+			OIl.localScale = new Vector3 (-iScaleL.x, il, iScaleL.z);
 		}
 
 	}

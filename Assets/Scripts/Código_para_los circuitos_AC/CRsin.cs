@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
  
 /// Controla el comportamiento del circuito RC con fuente de voltaje
@@ -53,10 +54,15 @@ public class CRsin : MonoBehaviour
 	Vector3 Vcpos;
 	
 	// variables para generar la funcion que nos servira como entrada de las variables de estado
-	/// variable para la frecuencia angular
+	/// variable para la amplitud
 	private float w;
-	/// variable para el tiempod de la señal 
+	/// variable para la amplitud de la señal
+	private float A;
+	/// variable para el tiempo de la señal 
 	private float linetime;
+
+	///variable para la amplitud de la frecuencia de la señal
+	public BehaviourReloj memoria;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -71,12 +77,13 @@ public class CRsin : MonoBehaviour
         Vcpos = OVc.transform.position;
 
         w = OVs.localScale.y;
+        A = 0.9f * w + 0.0517f;
         linetime = 0;
         
         R = OR.localScale.y;
         c = 2;
 
-		U = Mathf.Sin(w*linetime);
+		U = A * Mathf.Sin(memoria.dato * linetime);
 		Xp = 0;
 		Tm = 0.02f;
 		
@@ -100,14 +107,15 @@ public class CRsin : MonoBehaviour
 
 		X = Xp;
 		w = OVs.localScale.y;
+		A = 2.04f * w - 1.327f;
 		linetime += Time.deltaTime;
-		U = Mathf.Sin(w*linetime);
+		U = A * Mathf.Sin(memoria.dato * linetime);
 		R = OR.localScale.y;
 
         Ad = 1 + (-1 / (R * c) * Tm);
         Bd = 1;
 		
-        print("R = "+R+" AB = "+Ad+" Bd = "+Bd);
+        //print("R = "+R+" AB = "+Ad+" Bd = "+Bd);
         
         Xp = Ad * X + Bd * U;
 		Y  =  C * Xp - X;
@@ -122,8 +130,8 @@ public class CRsin : MonoBehaviour
         else {
             I.localScale = new Vector3(-i, iScale.y, -iScale.z);
         }
-		OVc.localScale = new Vector3(ratio * vr,vr,vr);
-        OVc.position = Vcpos - new Vector3(0, vr / 2, 0);
+		OVc.localScale = new Vector3( vr/2,(vr*2/4),vr/2);
+        //OVc.position = Vcpos - new Vector3(0, vr / 2, 0);
        
 
     }

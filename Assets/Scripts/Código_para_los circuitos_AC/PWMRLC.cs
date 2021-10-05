@@ -70,6 +70,8 @@ public class PWMRLC : MonoBehaviour
     // Variables para generar la señal de entrada a la matrices de estados 
     // varible para almacenar la frecuencia angular 
     float w;
+    /// variable para linealizar la magnitud de la señal
+    private float A;
     // variable para almacenar la línea de tiempo 
     float linetime;
     // variable para pasar de frecuencia angular (rad) a frecuencia (Hz) 
@@ -80,6 +82,8 @@ public class PWMRLC : MonoBehaviour
     private Slider _slider;
     //texto para saber el porcentaje de la señal util de pwm
     private Text _text;
+    //memoria
+    public BehaviourReloj memoria;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -100,7 +104,7 @@ public class PWMRLC : MonoBehaviour
         w = OVs.localScale.y;
         linetime = 0;
         
-        frecuencia = (w) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
+        frecuencia = (memoria.dato) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
         periodo = 1 / frecuencia;					// obtenemos el periodo de las señales 
 
         R = OR.localScale.y;
@@ -145,10 +149,11 @@ public class PWMRLC : MonoBehaviour
 		
 		w = OVs.localScale.y;
 		linetime += Time.deltaTime;
-		frecuencia = (w) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
+		frecuencia = (memoria.dato) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
 		periodo = 1 / frecuencia;					// obtenemos el periodo de las señales 
-		
-		uk = (linetime % periodo < periodo/divisor) ? 1 : 0;
+		A = 1.153f * w - 0.707f;
+		print(A);
+		uk = (linetime % periodo < periodo/divisor) ? A : 0;
 		R = OR.localScale.y;
 
 		a1 = R / l;

@@ -47,8 +47,8 @@ public class AxisSin : MonoBehaviour {
 
 		axesLineRenderer2 = transform.GetChild(1).gameObject.AddComponent<LineRenderer>();
 		axesLineRenderer2.material = new Material(Shader.Find("Sprites/Default"));
-		axesLineRenderer2.material.color = new Color(0.0F, 0.0F, 1.0F, 1F);
-		axesLineRenderer2.startColor = new Color(0.0F, 0.0F, 1.0F, 1F);
+		axesLineRenderer2.material.color = new Color(0.02F, 0.5F, 0.243F, 1F);
+		axesLineRenderer2.startColor = new Color(0.02F, 0.5F, 0.243F, 1F);
 		axesLineRenderer2.startWidth = 0.03f;
 		axesLineRenderer2.positionCount = 1;
 

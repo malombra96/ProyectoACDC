@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /// Controla el comportamiento del circuito RLC con fuente de voltaje
@@ -67,10 +68,14 @@ public class RLCsin : MonoBehaviour
 	float lyk, lyk_1, lyk_2, lb2, lb1, lb0, ln2, ln1, ln0, ld1, ld0;
 
     // Variables para generar la señal de entrada a la matrices de estados 
-    // varible para almacenar la frecuencia angular 
+    // varible para almacenar la magnitud de la señal
     float w;
+    // varible para almacenar la magnitud de la señal
+    float A;
     // variable para almacenar la línea de tiempo 
     float linetime;
+    // variable para almacenar la magnitud de la frecuencia
+    public BehaviourReloj memoria;
 
 
 // =====================================================================================================
@@ -88,6 +93,7 @@ public class RLCsin : MonoBehaviour
 		// Vrpos = OVr.transform.position;
 
         w = OVs.localScale.y;
+        A = 0.9f * w + 0.0517f;
         linetime = 0;
 
         R = OR.localScale.y;
@@ -96,7 +102,7 @@ public class RLCsin : MonoBehaviour
 		Tm = 0.02f;
 		Tmedios = 2 / Tm;
 
-        uk = Mathf.Sin(w * linetime);
+        uk = A * Mathf.Sin(memoria.dato * linetime);
 		uk_1 = 0;
 		uk_2 = 0;
 
@@ -127,9 +133,10 @@ public class RLCsin : MonoBehaviour
         axes.GetComponent<AxisSin>().ReferenceAssignment(uk,vc,true);
 
         w = OVs.localScale.y;
+        A = 2.04f * w - 1.327f;
         linetime += Time.deltaTime;
 
-		uk = Mathf.Sin(w * linetime);
+		uk = A * Mathf.Sin(memoria.dato * linetime);
 		R = OR.localScale.y;
 
 		a1 = R / l;

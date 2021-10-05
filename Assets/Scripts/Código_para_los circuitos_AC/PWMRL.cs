@@ -53,8 +53,10 @@ public class PWMRL : MonoBehaviour
 
 
     // Variables para generar la señal de entrada a la matrices de estados 
-    // varible para almacenar la frecuencia angular 
+    // variable para la magnitud de la señal
     float w;
+    /// variable para linealizar la magnitud de la señal
+    private float A;
     // variable para almacenar la línea de tiempo 
     float linetime;
     // variable para pasar de frecuencia angular (rad) a frecuencia (Hz) 
@@ -65,6 +67,8 @@ public class PWMRL : MonoBehaviour
     private Slider _slider;
     //texto para saber el porcentaje de la señal util de pwm
     private Text _text;
+    //slider para la amplitud de la frecuencia de la señal
+    public BehaviourReloj memoria;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -115,9 +119,10 @@ public class PWMRL : MonoBehaviour
         w = OVs.localScale.y;
 
         X = Xp;
-        frecuencia = (w) / (2 * Mathf.PI);
+        frecuencia = (memoria.dato) / (2 * Mathf.PI);
         periodo = 1 / frecuencia;
-        U = (linetime % periodo < periodo/divisor) ? 1 : 0;
+        A = 2.04f * w - 1.327f;;
+        U = (linetime % periodo < periodo/divisor) ? A : 0;
         r = OR.localScale.y;
 
         Ad = 1 + (-(r / l) * Tm);

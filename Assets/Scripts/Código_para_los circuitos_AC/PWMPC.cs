@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -55,18 +56,23 @@ public class PWMPC : MonoBehaviour
 	Vector3 Vcpos;
 
     // variables para generar la funcion que nos servira como entrada de las variables de estado
-	/// variable para la frecuencia angular
+	/// variable para la magnitud de la señal
 	private float w;
+	/// variable para la magnitud de la señal
+	private float A;
 	/// variable para el tiempod de la señal 
 	private float linetime;
     // variable para pasar de frecuencia angular (rad) a frecuencia (Hz) 
     float frecuencia;
-    // variable para almacenar el periodo de la señal 
-    float periodo;
     //slider para el valor util de la señal 
     private Slider _slider;
     //texto para saber el porcentaje de la señal util de pwm
     private Text _text;
+    
+    // variable para almacenar el periodo de la señal 
+    public float periodo;
+    //alamacenamiento de cambio de frecuencia 
+    public BehaviourReloj memoria;
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
 /**
@@ -83,7 +89,7 @@ public class PWMPC : MonoBehaviour
         Vcpos = OVc.transform.position;
 
 		w = OVs.localScale.y;
-        frecuencia = (w) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
+        frecuencia = (memoria.dato) / (2 * Mathf.PI);			// determinamos la frecuencia de las señales
         periodo = 1 / frecuencia;					// obtenemos el periodo de las señales 
 		linetime = 0;
         R = OR.localScale.y;
@@ -98,7 +104,7 @@ public class PWMPC : MonoBehaviour
 		D = 0;
 
 		OVc.localScale = new Vector3(0,0,0);
-        
+
 	}
 // =====================================================================================================
 	/// Método FixedUpdate. Se ejecuta una vez cada 0.02 segundos
@@ -109,15 +115,40 @@ public class PWMPC : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		
+		frecuencia = (memoria.dato) / (2 * Mathf.PI);
+		
+		// if (Math.Abs(sliderFrecuencia.value - memoria) < 0.01)
+		// {
+		// 	memoria = sliderFrecuencia.value;
+		// }
+		// else
+		// {
+		// 	if (sliderFrecuencia.value > memoria)
+		// 	{
+		// 		memoria = memoria + 0.005f;
+		// 	}
+		// 	else
+		// 	{
+		// 		memoria = memoria - 0.005f;
+		// 	}
+		// }
+		
+		periodo = 1 / frecuencia;
+		print("PERIODO = "+periodo);
+		
 		axes.GetComponent<AxisSin>().ReferenceAssignment(U, vc, true);
 		float divisor = 100 / _slider.value;
 		_text.text = Mathf.Round(_slider.value).ToString()+" %";
 		X = Xp;
 		w = OVs.localScale.y;
 		linetime += Time.deltaTime;
-		frecuencia = (w) / (2 * Mathf.PI);
-		periodo = 1 / frecuencia;
-		U = (linetime % periodo < periodo/divisor) ? 1 : 0;
+		
+		A = 2.04f * w - 1.327f;
+		//print("a = "+ A);
+		float pri = linetime % periodo;
+		print("MODULO = "+ pri);
+		U = (linetime % periodo < periodo/divisor) ? A : 0;
 		R = OR.localScale.y;
 
         Ad = 1 + (-1 / (R * c) * Tm);

@@ -18,6 +18,8 @@ public class CVRRC : MonoBehaviour {
 	public Transform OR2;
 	/// Objeto de Unity asociado al voltaje en el capacitor
 	public Transform OVc;
+	/// Objeto de Unity asociado a la corriente
+	public Transform I;
 
 	/// Objeto de Unity que representa los ejes de graficación
 	public GameObject axes;
@@ -42,7 +44,8 @@ public class CVRRC : MonoBehaviour {
 	float yk; 
 	/// variable para almacenar el valor de la salida Y[k - 1] (salida en la iteración anterior)
 	float yk_1;
-
+	/// vector para almacenar la proporción de la corriente
+	Vector3 iScale;
 	/// variable para almacenar valor del coeficiente b0 del numerador de la función de transferencia continua
 	float b0;
 	/// variable para almacenar valor del coeficiente a0 del denominador de la función de transferencia continua
@@ -59,7 +62,7 @@ public class CVRRC : MonoBehaviour {
 */
 	void Start () {
 
-
+		iScale = I.transform.localScale;
 		ratio = OVc.transform.localScale.x / OVc.transform.localScale.y;
 		Vcpos = OVc.transform.position;
 
@@ -103,9 +106,21 @@ public class CVRRC : MonoBehaviour {
 		yk_1 = yk;
 		uk_1 = uk;
 
+		float vr = uk * R / (R * r); 
+
+		float i = 0.02f*(uk - vr) / R;
+			
+		
+		if (i > 0) {
+			I.localScale = new Vector3(i, iScale.y, iScale.z);
+		}
+		else {
+			I.localScale = new Vector3(-i, iScale.y, -iScale.z);
+		}
+		
 		OVc.localScale = new Vector3(ratio * vc,vc,vc);
 		OVc.position = Vcpos - new Vector3(0, vc/2, 0);
-
+		
 
 	}
 }

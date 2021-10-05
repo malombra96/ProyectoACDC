@@ -59,12 +59,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BehaviourReloj.cs" />
     <Compile Include="Assets\Scripts\AxesBehaviour.cs" />
     <Compile Include="Assets\Scripts\CIPRC.cs" />
     <Compile Include="Assets\Scripts\CIPRL.cs" />
     <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\AxisSin.cs" />
+    <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\BehaviourZz.cs" />
     <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\CRsin.cs" />
     <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\DemoSin.cs" />
+    <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\LRsin.cs" />
     <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\PWMPC.cs" />
     <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\PWMRL.cs" />
     <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\PWMRLC.cs" />
