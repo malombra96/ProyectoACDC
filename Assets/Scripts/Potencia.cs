@@ -112,7 +112,7 @@ public class Potencia : MonoBehaviour
 	void FixedUpdate()
 	{
 
-		axes.GetComponent<AxisSin>().ReferenceAssignment(Q, P, S, P, 2);
+		axes.GetComponent<AxisSin>().ReferenceAssignment(Q, P, S, P, 3);
 
 		linetime += Time.deltaTime;
 

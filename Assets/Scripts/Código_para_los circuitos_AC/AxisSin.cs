@@ -140,6 +140,7 @@ public class AxisSin : MonoBehaviour {
 		axesLineRenderer2.positionCount = k;
 		axesLineRenderer3.positionCount = k;
 		axesLineRenderer4.positionCount = k;
+		print("r2 "+reference2);
 
 		switch (numberSignal)
 		{
