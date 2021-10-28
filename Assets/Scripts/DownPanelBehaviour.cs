@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 /// Controla el comportamiento del panel inferior de la Interfaz gráfica de usuario
@@ -28,6 +29,8 @@ public class DownPanelBehaviour : MonoBehaviour {
     public Transform appCamera;
 	/// variable posición Z de la cámara cuando hay movimiento del panel
     float cameraPosTarget;
+
+    public List<GameObject>  tags;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -60,7 +63,7 @@ public class DownPanelBehaviour : MonoBehaviour {
         else {
             showingPanel = true;
         }
-
+        
         if (showingPanel) {
             panelPosTarget = panelPosShow;
             cameraPosTarget = -1;
@@ -73,6 +76,8 @@ public class DownPanelBehaviour : MonoBehaviour {
         }
 
         tPanel = 0;
+
+        HierarchyTags(0);
 
     }
 // =====================================================================================================
@@ -107,5 +112,14 @@ public class DownPanelBehaviour : MonoBehaviour {
             RefleshPos();
         }
 
+    }
+
+
+    public void HierarchyTags(int index)
+    {
+        for (int i = 0; i < tags.Count; i++)
+        {
+            tags[i].SetActive(index == i);
+        }
     }
 }

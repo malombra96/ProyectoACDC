@@ -26,7 +26,7 @@ public class BehaviourReloj : MonoBehaviour,  IPointerEnterHandler, IPointerExit
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        print("salida");
+        //print("salida");
         dato = sliderFrecuencia.value;
     }
 }

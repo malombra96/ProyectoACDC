@@ -8,11 +8,18 @@ using UnityEngine;
 */
 public class AxisSin : MonoBehaviour {
 	/// Objeto de Unity usado como referencia para la gráfica Roja
-	public  float reference1,reference2;
+	public  float reference1,reference2, reference3, reference4;
+
+	///Colores para cada una de las señales
+	public Color colorSignal1, colorSignal2, colorSignal3, colorSignal4; 
 	/// Objeto de Unity para instanciar la linea roja
 	LineRenderer axesLineRenderer1;
 	/// Objeto de Unity para instanciar la linea azul
 	LineRenderer axesLineRenderer2;
+	/// Objeto de Unity para instanciar la linea roja
+	LineRenderer axesLineRenderer3;
+	/// Objeto de Unity para instanciar la linea azul
+	LineRenderer axesLineRenderer4;
 	/// variable para almacenar la posición x de los ejes
 	float xp;
 	/// variable para almacenar la posición y de los ejes
@@ -29,6 +36,8 @@ public class AxisSin : MonoBehaviour {
 	int k;
 	/// variable para almacenar el signo de la señal azul
 	bool outSign = true;
+	/// variable para almacenar el numero de señales a graficar
+	public int numberSignal = 0;
 
 // =====================================================================================================
 /// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -40,18 +49,31 @@ public class AxisSin : MonoBehaviour {
 		// axesLineRenderer1 = gameObject.AddComponent<LineRenderer>();
 		axesLineRenderer1 = transform.GetChild(0).gameObject.AddComponent<LineRenderer>();
 		axesLineRenderer1.material = new Material(Shader.Find("Sprites/Default"));
-		axesLineRenderer1.material.color = Color.red;
-		axesLineRenderer1.startColor = Color.red;
+		axesLineRenderer1.material.color = colorSignal1;
+		axesLineRenderer1.startColor = colorSignal1;
 		axesLineRenderer1.startWidth = 0.03f;
 		axesLineRenderer1.positionCount = 1;
 
 		axesLineRenderer2 = transform.GetChild(1).gameObject.AddComponent<LineRenderer>();
 		axesLineRenderer2.material = new Material(Shader.Find("Sprites/Default"));
-		axesLineRenderer2.material.color = new Color(0.02F, 0.5F, 0.243F, 1F);
-		axesLineRenderer2.startColor = new Color(0.02F, 0.5F, 0.243F, 1F);
+		axesLineRenderer2.material.color = colorSignal2;
+		axesLineRenderer2.startColor = colorSignal2;
 		axesLineRenderer2.startWidth = 0.03f;
 		axesLineRenderer2.positionCount = 1;
-
+		
+		axesLineRenderer3 = transform.GetChild(2).gameObject.AddComponent<LineRenderer>();
+		axesLineRenderer3.material = new Material(Shader.Find("Sprites/Default"));
+		axesLineRenderer3.material.color = colorSignal3;
+		axesLineRenderer3.startColor = colorSignal3;
+		axesLineRenderer3.startWidth = 0.03f;
+		axesLineRenderer3.positionCount = 1;
+		
+		axesLineRenderer4 = transform.GetChild(4).gameObject.AddComponent<LineRenderer>();
+		axesLineRenderer4.material = new Material(Shader.Find("Sprites/Default"));
+		axesLineRenderer4.material.color = colorSignal4;
+		axesLineRenderer4.startColor = colorSignal4;
+		axesLineRenderer4.startWidth = 0.03f;
+		axesLineRenderer4.positionCount = 1;
 
 		xp = transform.position.x;
 		yp = transform.position.y;// - transform.localScale.z/2;
@@ -60,10 +82,10 @@ public class AxisSin : MonoBehaviour {
 		sx = 5*transform.localScale.x * transform.parent.localScale.x;
 		sy = 5*transform.localScale.z * transform.parent.localScale.y;
 		
-		print("sx = " + sx);
+		/*print("sx = " + sx);
 		print("transform.position.x"+transform.position.x);
 		print("transform.localScale.x = " + transform.localScale.x);
-		print("transform.parent.localScale.x = " + transform.parent.localScale.x);
+		print("transform.parent.localScale.x = " + transform.parent.localScale.x);*/
 		
 		ResetLineAxes();
 
@@ -85,11 +107,14 @@ public class AxisSin : MonoBehaviour {
   \param O2 Objeto que representa la variable azul
   \param sign variable que representa el signo de la variable azul
 */
-	public void ReferenceAssignment (float O1, float O2, bool sign){
+	public void ReferenceAssignment (float O1, float O2, float O3, float O4, int sign = 1){
 
 		reference1 = O1;
 		reference2 = O2;
-		outSign = sign;
+		reference3 = O3;
+		reference4 = O4;
+		numberSignal = sign;
+		//outSign = sign;
 }
 // =====================================================================================================
 /// Método Update. Se ejecuta una vez cada frame
@@ -104,6 +129,8 @@ public class AxisSin : MonoBehaviour {
 			k = 1;
 			axesLineRenderer1.positionCount = k;
 			axesLineRenderer2.positionCount = k;
+			axesLineRenderer3.positionCount = k;
+			axesLineRenderer4.positionCount = k;
 		}
 		else{
 			k++;
@@ -111,15 +138,38 @@ public class AxisSin : MonoBehaviour {
 
 		axesLineRenderer1.positionCount = k;
 		axesLineRenderer2.positionCount = k;
+		axesLineRenderer3.positionCount = k;
+		axesLineRenderer4.positionCount = k;
 
-		axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));
-
-		if (outSign) {
+		switch (numberSignal)
+		{
+			case 1:
+				axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));
+				break;
+			case 2:
+				axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));
+				axesLineRenderer2.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference2/1.5f*sy, zp));
+				break;
+			case 3:
+				axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));
+				axesLineRenderer2.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference2/1.5f*sy, zp));
+				axesLineRenderer3.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference3/1.5f*sy, zp));
+				break;
+			case 4:
+				axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));
+				axesLineRenderer2.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference2/1.5f*sy, zp));
+				axesLineRenderer3.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference3/1.5f*sy, zp));
+				axesLineRenderer4.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference4/1.5f*sy, zp));
+				break;
+		}
+		
+		
+		/*if (outSign) {
 		    axesLineRenderer2.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference2/1.5f*sy, zp));
 		} 
 		else {
 			axesLineRenderer2.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy-reference2/1.5f*sy, zp));
-		}
+		}*/
 
 
 	}

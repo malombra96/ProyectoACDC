@@ -19,7 +19,6 @@
       <Path>.vscode</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
-      <Path>Temp</Path>
       <Path>UnityPackageManager</Path>
       <Path>etc</Path>
       <Path>obj</Path>
