@@ -22,10 +22,17 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
+<<<<<<< HEAD
   m_MinSize: {x: 708, y: 471}
   m_MaxSize: {x: 18003, y: 14021}
   vertical: 0
   controlID: -1
+=======
+  m_MinSize: {x: 579, y: 342}
+  m_MaxSize: {x: 12004, y: 8042}
+  vertical: 0
+  controlID: 1805
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -47,10 +54,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 538
     y: 315
     width: 1103
     height: 684
+=======
+    x: 293
+    y: 73
+    width: 1186
+    height: 926
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -94,16 +108,24 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 1103
       height: 663
     m_Scale: {x: 0.28723958, y: 0.28723958}
     m_Translation: {x: 551.5, y: 331.5}
+=======
+      width: 1186
+      height: 905
+    m_Scale: {x: 0.6177083, y: 0.6177083}
+    m_Translation: {x: 593, y: 452.5}
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -1920
       y: -1154.0889
       width: 3840
@@ -111,6 +133,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 0.28723958
   m_LastWindowPixelSize: {x: 1103, y: 684}
+=======
+      x: -960
+      y: -732.5464
+      width: 1920
+      height: 1465.0928
+    m_MinimalGUI: 1
+  m_defaultScale: 0.6177083
+  m_LastWindowPixelSize: {x: 1186, y: 926}
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -135,12 +166,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 538
     height: 947
   m_MinSize: {x: 231, y: 471}
   m_MaxSize: {x: 10001, y: 14021}
   vertical: 1
   controlID: 69
+=======
+    width: 293
+    height: 947
+  m_MinSize: {x: 201, y: 342}
+  m_MaxSize: {x: 4001, y: 8042}
+  vertical: 1
+  controlID: 1806
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -158,10 +198,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 538
     height: 425
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    width: 293
+    height: 425
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_ActualView: {fileID: 5}
   m_Panes:
   - {fileID: 5}
@@ -190,15 +237,26 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73
+<<<<<<< HEAD
     width: 537
+=======
+    width: 292
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
     height: 404
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
+<<<<<<< HEAD
       scrollPos: {x: 0, y: 225}
       m_SelectedIDs: c6ecffff
       m_LastClickedID: -4922
       m_ExpandedIDs: b6ecffffc2ecffff4afbffff16450000c64600001c470000
+=======
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 4afbffffdc440000
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -232,23 +290,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+<<<<<<< HEAD
   m_Name: 
+=======
+  m_Name: ConsoleWindow
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 425
+<<<<<<< HEAD
     width: 538
     height: 522
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 7}
+=======
+    width: 293
+    height: 522
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 8}
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_Panes:
   - {fileID: 7}
   - {fileID: 8}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -272,7 +342,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 498
+<<<<<<< HEAD
     width: 537
+=======
+    width: 292
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
     height: 501
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
@@ -288,22 +362,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Scripts
+=======
+    - Assets/Resources/Imagenes
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/Scripts
+=======
+  - Assets/Resources/Imagenes
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Juan Quevedo\Documents\Unity\Proyectos\ProyectoACDC
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: fa4b0000
     m_LastClickedID: 19450
     m_ExpandedIDs: 00000000f04b0000f24b0000f44b0000f64b0000f84b0000fa4b000000ca9a3b
+=======
+    m_SelectedIDs: 0c4c0000
+    m_LastClickedID: 19468
+    m_ExpandedIDs: 000000007e4b0000804b0000824b0000844b0000864b0000884b0000
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -331,7 +419,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000f04b0000f24b0000f44b0000f64b0000f84b0000fa4b0000
+=======
+    m_ExpandedIDs: 000000007e4b0000804b0000824b0000844b0000864b0000884b0000
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -356,10 +448,17 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: c6ecffff
     m_LastClickedInstanceID: -4922
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: d60400003c1d000070200000ac050000ee04000026050000f60400000000000084270000940c0000c80b0000fa0b000080290000
+=======
+    m_SelectedInstanceIDs: 88470000
+    m_LastClickedInstanceID: 18312
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: d60400003c1d000070200000ac050000ee04000026050000f604000084270000940c0000c80b0000fa0b000080290000fc5d000000000000
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -383,10 +482,14 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 42}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
+<<<<<<< HEAD
   m_DirectoriesAreaWidth: 188
+=======
+  m_DirectoriesAreaWidth: 127
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -408,10 +511,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: -1536
     y: 410.4
     width: 287
     height: 374
+=======
+    x: 0
+    y: 498
+    width: 292
+    height: 501
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &9
 MonoBehaviour:
@@ -453,6 +563,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 0
     y: 0
     width: 1105
@@ -460,6 +571,15 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 11}
+=======
+    x: 293
+    y: 0
+    width: 1188
+    height: 947
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 2}
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_Panes:
   - {fileID: 11}
   m_Selected: 0
@@ -485,14 +605,21 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 538
     y: 73
     width: 1103
     height: 221
+=======
+    x: 293
+    y: 73
+    width: 1186
+    height: 926
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: b36acadf627019e41b1436a5fe0e035a
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
@@ -501,9 +628,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: -5.295192, y: -0.22212422, z: -2.6247852}
     speed: 2
     m_Value: {x: -5.295192, y: -0.22212422, z: -2.6247852}
+=======
+    m_Target: {x: 901.00183, y: 435.4582, z: -42.358}
+    speed: 2
+    m_Value: {x: 901.00183, y: 435.4582, z: -42.358}
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -554,9 +687,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 4.031591
     speed: 2
     m_Value: 4.031591
+=======
+    m_Target: 835.59155
+    speed: 2
+    m_Value: 835.59155
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -596,6 +735,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 0
     y: 242
     width: 1105
@@ -629,12 +769,25 @@ MonoBehaviour:
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
+=======
+    x: 1481
+    y: 0
+    width: 439
+    height: 947
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 12}
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_Panes:
   - {fileID: 14}
   - {fileID: 15}
   m_Selected: 0
   m_LastSelected: 1
+<<<<<<< HEAD
 --- !u!114 &14
+=======
+--- !u!114 &12
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -655,18 +808,31 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1643
     y: 73
     width: 276
+=======
+    x: 1481
+    y: 73
+    width: 438
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
+<<<<<<< HEAD
     m_CachedPref: 288
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
+=======
+    m_CachedPref: 377
+    m_ControlHash: -371814159
+    m_PrefName: Preview_InspectorPreview
+  m_LastInspectedObjectInstanceID: 17690
+>>>>>>> parent of cdc30ad (imagenes acomodadas)
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:

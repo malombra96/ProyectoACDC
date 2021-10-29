@@ -9,7 +9,6 @@
         <e p="BehaviourReloj.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AxesBehaviour.cs" t="Include" />
-          <e p="CircuitoBifasico.cs" t="Include" />
           <e p="CircuitoMonofase.cs" t="Include" />
           <e p="CircuitoResonancia.cs" t="Include" />
           <e p="CircuitoTrifasico.cs" t="Include" />
