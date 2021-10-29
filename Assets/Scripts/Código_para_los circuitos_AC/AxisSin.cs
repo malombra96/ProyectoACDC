@@ -13,13 +13,13 @@ public class AxisSin : MonoBehaviour {
 	///Colores para cada una de las señales
 	public Color colorSignal1, colorSignal2, colorSignal3, colorSignal4; 
 	/// Objeto de Unity para instanciar la linea roja
-	LineRenderer axesLineRenderer1;
+	[HideInInspector] public LineRenderer axesLineRenderer1;
 	/// Objeto de Unity para instanciar la linea azul
-	LineRenderer axesLineRenderer2;
+	[HideInInspector] public LineRenderer axesLineRenderer2;
 	/// Objeto de Unity para instanciar la linea roja
-	LineRenderer axesLineRenderer3;
+	[HideInInspector] public LineRenderer axesLineRenderer3;
 	/// Objeto de Unity para instanciar la linea azul
-	LineRenderer axesLineRenderer4;
+	[HideInInspector] public LineRenderer axesLineRenderer4;
 	/// variable para almacenar la posición x de los ejes
 	float xp;
 	/// variable para almacenar la posición y de los ejes
@@ -125,12 +125,7 @@ public class AxisSin : MonoBehaviour {
 
 		lineTime += Time.deltaTime;
 		if(lineTime>20){
-			lineTime = 0;
-			k = 1;
-			axesLineRenderer1.positionCount = k;
-			axesLineRenderer2.positionCount = k;
-			axesLineRenderer3.positionCount = k;
-			axesLineRenderer4.positionCount = k;
+			Reset();
 		}
 		else{
 			k++;
@@ -140,7 +135,7 @@ public class AxisSin : MonoBehaviour {
 		axesLineRenderer2.positionCount = k;
 		axesLineRenderer3.positionCount = k;
 		axesLineRenderer4.positionCount = k;
-		print("r2 "+reference2);
+
 
 		switch (numberSignal)
 		{
@@ -171,7 +166,17 @@ public class AxisSin : MonoBehaviour {
 		else {
 			axesLineRenderer2.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy-reference2/1.5f*sy, zp));
 		}*/
+	
+	}
 
-
+	public void Reset()
+	{
+		print("RESET");
+		lineTime = 0;
+		k = 1;
+		axesLineRenderer1.positionCount = k;
+		axesLineRenderer2.positionCount = k;
+		axesLineRenderer3.positionCount = k;
+		axesLineRenderer4.positionCount = k;
 	}
 }
