@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ConexiónEstrella : MonoBehaviour
 {
+	/// Colores para las señales
+	public Color colorSignal1, colorSignal2, colorSignal3, colorSignal4;
 	/// Objeto de Unity asociado al voltaje de fase Van
 	public Transform OVan;
 	/// Objeto de Unity asociado al voltaje de fase Vbn
@@ -70,8 +72,8 @@ public class ConexiónEstrella : MonoBehaviour
 	private float linetime;
 
 	///variable para la frecuencia de la señal
-	//public BehaviourReloj memoria;
-	public float Frecuency;
+	public BehaviourReloj memoria;
+	//public float Frecuency;
 
 	// =====================================================================================================
 	/// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -81,8 +83,14 @@ public class ConexiónEstrella : MonoBehaviour
 */
 	void Start()
 	{
+		// Definir colores de las señales a mostrar
+		axes.GetComponent<AxisSin>().colorSignal1 = colorSignal1;
+		axes.GetComponent<AxisSin>().colorSignal2 = colorSignal2;
+		axes.GetComponent<AxisSin>().colorSignal3 = colorSignal3;
+		axes.GetComponent<AxisSin>().colorSignal4 = colorSignal4;
+		
 		// Definir la frecuencia de operacion
-		Frecuency = 2;
+		//Frecuency = 2;
 		
 		// Setea la linea de tiempo a 0.
 		linetime = 0;
@@ -126,9 +134,9 @@ public class ConexiónEstrella : MonoBehaviour
 		Fcn = Mathf.Deg2Rad * (Fan + 120);
 
 		//Representacion de los voltajes de fase en el domunio del tiempo.
-		Van = Vpa * Mathf.Sin(Frecuency * linetime + Fan);
-		Vbn = Vpb * Mathf.Sin(Frecuency * linetime + Fbn);
-		Vcn = Vpc * Mathf.Sin(Frecuency * linetime + Fcn);
+		Van = Vpa * Mathf.Sin(memoria.dato * linetime + Fan);
+		Vbn = Vpb * Mathf.Sin(memoria.dato * linetime + Fbn);
+		Vcn = Vpc * Mathf.Sin(memoria.dato * linetime + Fcn);
 
 		//Setear escala de las flechas de corriente a 0
 		OIa.localScale = new Vector3(0, 0, 0);
@@ -185,23 +193,23 @@ public class ConexiónEstrella : MonoBehaviour
 		Fcn = Mathf.Deg2Rad * (Fan + 120);
 
 		//Representacion de los voltajes de fase en el domunio del tiempo.
-		Van = Vpa * Mathf.Sin(Frecuency * linetime + Fan);
-		Vbn = Vpb * Mathf.Sin(Frecuency * linetime + Fbn);
-		Vcn = Vpc * Mathf.Sin(Frecuency * linetime + Fcn);
+		Van = Vpa * Mathf.Sin(memoria.dato * linetime + Fan);
+		Vbn = Vpb * Mathf.Sin(memoria.dato * linetime + Fbn);
+		Vcn = Vpc * Mathf.Sin(memoria.dato * linetime + Fcn);
 
 		//Resolvemos las ecuaciones para las corrientes Ia = Van/Z1, Ib = Vbn/Z2 y  Ic = Van/Z1
 
 		Ipa = Vpa / MagZ1;
 		FIa = Fan - FaseZ1;
-		Ia = Ipa * Mathf.Sin(Frecuency * linetime + FIa);
+		Ia = Ipa * Mathf.Sin(memoria.dato * linetime + FIa);
 
 		Ipb = Vpb / MagZ2;
 		FIb = Fbn - FaseZ2;
-		Ib = Ipb * Mathf.Sin(Frecuency * linetime + FIb);
+		Ib = Ipb * Mathf.Sin(memoria.dato * linetime + FIb);
 
 		Ipc = Vpc / MagZ3;
 		FIc = Fcn - FaseZ3;
-		Ic = Ipc * Mathf.Sin(Frecuency * linetime + FIc);
+		Ic = Ipc * Mathf.Sin(memoria.dato * linetime + FIc);
 
 		//Se halla la corriente de neutro In
 

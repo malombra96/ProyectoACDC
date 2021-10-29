@@ -512,7 +512,7 @@ public class General : MonoBehaviour {
         DiscusText.text = TextDiscu(index);
         DisScroll.value = 1;
 
-        axes.GetComponent<AxesBehaviour>().ResetLineAxes();
+        axes.GetComponent<AxisSin>().ResetLineAxes();
         _contenOrientacion.GetComponent<RectTransform>().sizeDelta = new Vector2(0,sizeOrientaciones(index));
         _contenDiscucion.GetComponent<RectTransform>().sizeDelta = new Vector2(0,sizeDiscuciones(index));
 }

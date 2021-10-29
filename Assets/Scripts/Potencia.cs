@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Potencia : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class Potencia : MonoBehaviour
 
 	/// Objeto de Unity que representa los ejes de graficación
 	public GameObject axes;
-
+	/// Colores para las señales
+	public Color colorSignal1, colorSignal2, colorSignal3, colorSignal4, colorSignal5, colorSignal6;
 
 	/// variable para almacenar el valor asignado al voltaje Vs
 	private float Vs, Vrms;
@@ -59,6 +61,13 @@ public class Potencia : MonoBehaviour
 	///variable para la frecuencia de la señal
 	//public BehaviourReloj memoria;
 	public float Frecuency;
+	//lista de los selecctores
+	public List<Toggle> check;
+
+	private int signalCase;
+	
+
+
 
 	// =====================================================================================================
 	/// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -68,6 +77,9 @@ public class Potencia : MonoBehaviour
 */
 	void Start()
 	{
+		for (int i = 0; i < check.Count; i++)
+			check[i].onValueChanged.AddListener(delegate(bool arg0) { CheckToggle(); });
+		
 		// Definir la frecuencia de operacion
 		Frecuency = 2;
 		
@@ -111,8 +123,15 @@ public class Potencia : MonoBehaviour
 */
 	void FixedUpdate()
 	{
-
-		axes.GetComponent<AxisSin>().ReferenceAssignment(Q, P, S, P, 3);
+		switch (signalCase)
+		{
+			case 0:
+				axes.GetComponent<AxisSin>().ReferenceAssignment(Vs, Is, S, P, 3);
+				break;
+			case 1:
+				axes.GetComponent<AxisSin>().ReferenceAssignment(Q, P, S, P, 3);
+				break;
+		}
 
 		linetime += Time.deltaTime;
 
@@ -171,6 +190,27 @@ public class Potencia : MonoBehaviour
 		{
 			OIs.localScale = new Vector3(-IsScale.x, IsScale.y, Is/50);
 		}
-
 	}
+	
+	public void CheckToggle()
+	{
+		print("entro");
+
+		if (check[0].isOn)
+		{
+			signalCase = 0;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal1;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal2;
+			axes.GetComponent<AxisSin>().axesLineRenderer3.material.color = colorSignal3;
+		}
+
+		if (check[1].isOn)
+		{
+			signalCase = 1;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal3;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal4;
+			axes.GetComponent<AxisSin>().axesLineRenderer3.material.color = colorSignal5;
+		}
+	}
+	
 }

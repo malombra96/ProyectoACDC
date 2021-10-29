@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CircuitoTrifasico : MonoBehaviour
 {
+    /// Colores para las señales
+	public Color colorSignal1, colorSignal2, colorSignal3, colorSignal4, colorSignal5, colorSignal6;
     /// Objeto de Unity asociado al voltaje de fase Van
 	public Transform OVan;
 	/// Objeto de Unity asociado al voltaje de fase Vbn
@@ -69,10 +72,14 @@ public class CircuitoTrifasico : MonoBehaviour
 
 	/// variable para el tiempo de la señal 
 	private float linetime;
+	/// variable para el cambio de señales
+	private int  signalCase;
 
 	///variable para la frecuencia de la señal
-	//private BehaviourReloj memoria;
-	public float Frecuency;
+	public BehaviourReloj memoria;
+	//public float Frecuency;
+	//lista de los selecctores
+	public List<Toggle> check;
 
 	// =====================================================================================================
 	/// Método Start. Se ejecuta una vez al iniciar la ejecución del programa
@@ -82,9 +89,6 @@ public class CircuitoTrifasico : MonoBehaviour
 */
 	void Start()
 	{
-		
-		Frecuency = 4;
-		
 		w1 = OVan.localScale.y;
 		w2 = OVbn.localScale.y;
 		w3 = OVcn.localScale.y;
@@ -99,16 +103,21 @@ public class CircuitoTrifasico : MonoBehaviour
 		Fbn = Mathf.Deg2Rad *(Fan - 120);
 		Fcn = Mathf.Deg2Rad *(Fan + 120);
 
-		Van = Vpa * Mathf.Sin(Frecuency * linetime + Fan);
-		Vbn = Vpb * Mathf.Sin(Frecuency * linetime + Fbn);
-		Vcn = Vpc * Mathf.Sin(Frecuency * linetime + Fcn);
-
+		Van = Vpa * Mathf.Sin(memoria.dato * linetime + Fan);
+		Vbn = Vpb * Mathf.Sin(memoria.dato * linetime + Fbn);
+		Vcn = Vpc * Mathf.Sin(memoria.dato * linetime + Fcn);
 
 		OVab.localScale = new Vector3(0, 0, 0);
 		OVbc.localScale = new Vector3(0, 0, 0);
 		OVca.localScale = new Vector3(0, 0, 0);
 
-
+		signalCase = 0;
+		
+		for (int i = 0; i < check.Count; i++)
+			check[i].onValueChanged.AddListener(delegate(bool arg0) { CheckToggle(); });
+		
+		axes.GetComponent<AxisSin>().colorSignal1 = colorSignal1;
+		axes.GetComponent<AxisSin>().colorSignal2 = colorSignal2;
 	}
 
 
@@ -120,8 +129,21 @@ public class CircuitoTrifasico : MonoBehaviour
 */
 	void FixedUpdate()
 	{
-
-		axes.GetComponent<AxisSin>().ReferenceAssignment(Van, Vab, Vcn, Vbc, 2);
+		switch (signalCase)
+		{
+			case 0:
+				axes.GetComponent<AxisSin>().ReferenceAssignment(Van, Vab, Vcn, Vbc, 2);
+				break;
+			case 1:
+				axes.GetComponent<AxisSin>().ReferenceAssignment(Vbn, Vbc, Vcn, Vbc, 2);
+				break;
+			case 2:
+				axes.GetComponent<AxisSin>().ReferenceAssignment(Vcn, Vca, Vcn, Vbc, 2);
+				break;
+			case 3:
+				axes.GetComponent<AxisSin>().ReferenceAssignment(Van, Vbn, Vcn, Vbc, 3);
+				break;
+		}
 
 		w1 = OVan.localScale.y;
 		w2 = OVbn.localScale.y;
@@ -133,9 +155,9 @@ public class CircuitoTrifasico : MonoBehaviour
 
 		linetime += Time.deltaTime;
 
-		Van = Vpa * Mathf.Sin(Frecuency * linetime + Fan);
-		Vbn = Vpb * Mathf.Sin(Frecuency * linetime + Fbn);
-		Vcn = Vpc * Mathf.Sin(Frecuency * linetime + Fcn);
+		Van = Vpa * Mathf.Sin(memoria.dato * linetime + Fan);
+		Vbn = Vpb * Mathf.Sin(memoria.dato * linetime + Fbn);
+		Vcn = Vpc * Mathf.Sin(memoria.dato * linetime + Fcn);
 
 
         float Rab, Xab, Rbc, Xbc, Rca, Xca;
@@ -154,9 +176,9 @@ public class CircuitoTrifasico : MonoBehaviour
         Fbc = Mathf.Atan2(Xbc, Rbc);
         Fca = Mathf.Atan2(Xca, Rca);
 
-        Vab = Mathf.Sqrt(Mathf.Pow(Rab, 2) + Mathf.Pow(Xab, 2)) * Mathf.Sin(Frecuency * linetime + Fab);
-        Vbc = Mathf.Sqrt(Mathf.Pow(Rbc, 2) + Mathf.Pow(Xbc, 2)) * Mathf.Sin(Frecuency * linetime + Fbc);
-        Vca = Mathf.Sqrt(Mathf.Pow(Rca, 2) + Mathf.Pow(Xca, 2)) * Mathf.Sin(Frecuency * linetime + Fca);
+        Vab = Mathf.Sqrt(Mathf.Pow(Rab, 2) + Mathf.Pow(Xab, 2)) * Mathf.Sin(memoria.dato * linetime + Fab);
+        Vbc = Mathf.Sqrt(Mathf.Pow(Rbc, 2) + Mathf.Pow(Xbc, 2)) * Mathf.Sin(memoria.dato * linetime + Fbc);
+        Vca = Mathf.Sqrt(Mathf.Pow(Rca, 2) + Mathf.Pow(Xca, 2)) * Mathf.Sin(memoria.dato * linetime + Fca);
 
 
         OVab.localScale = new Vector3(Vab, Vab, Vab);
@@ -167,5 +189,41 @@ public class CircuitoTrifasico : MonoBehaviour
 		OVobn.localScale = new Vector3(Vbn, Vbn, Vbn / 2);
 		OVocn.localScale = new Vector3(Vcn, Vcn, Vcn / 2);
 
+	}
+	
+	public void CheckToggle()
+	{
+		if (check[0].isOn)
+		{
+			signalCase = 0;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal1;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal2;
+			axes.GetComponent<AxisSin>().Reset();
+		}
+
+		if (check[1].isOn)
+		{
+			signalCase = 1;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal3;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal4;
+			axes.GetComponent<AxisSin>().Reset();
+		}
+
+		if (check[2].isOn)
+		{
+			signalCase = 2;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal5;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal6;
+			axes.GetComponent<AxisSin>().Reset();
+		}
+
+		if (check[3].isOn)
+		{
+			signalCase = 3;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal1;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal3;
+			axes.GetComponent<AxisSin>().axesLineRenderer3.material.color = colorSignal6;
+			axes.GetComponent<AxisSin>().Reset();
+		}
 	}
 }
