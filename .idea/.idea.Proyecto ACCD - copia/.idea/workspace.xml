@@ -20,10 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="170bee90-1990-463d-b3e5-1806aca6a40d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Proyecto ACCD - copia/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Proyecto ACCD - copia/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Proyecto ACCD - copia/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Proyecto ACCD - copia/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CircuitoResonancia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CircuitoResonancia.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Objects/Materials/letterDarkRed.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Objects/Materials/letterDarkRed.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Principal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Principal.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Imagenes/Toma.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Imagenes/Toma.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CircuitoMonofase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CircuitoMonofase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CircuitoTrifasico.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CircuitoTrifasico.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ConexiónEstrella.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConexiónEstrella.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Código_para_los circuitos_AC/AxisSin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Código_para_los circuitos_AC/AxisSin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/General.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/General.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Potencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Potencia.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/Library/CurrentMaximizeLayout.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Potencia.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CircuitoTrifasico.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ConexiónEstrella.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CircuitoBifasico.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CircuitoResonancia.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -47,14 +58,16 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Manager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DownPanelBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/demo.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CircuitoMonofase.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Trifasico.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ConexiónEstrella.cs" />
         <option value="$PROJECT_DIR$/Assets/BehaviourReloj.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/CircuitoTrifasico.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CircuitoResonancia.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Código_para_los circuitos_AC/AxisSin.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CircuitoMonofase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ConexiónEstrella.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Potencia.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/General.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Código_para_los circuitos_AC/AxisSin.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CircuitoTrifasico.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CircuitoBifasico.cs" />
       </list>
     </option>
   </component>
@@ -109,6 +122,8 @@
       <workItem from="1635203023318" duration="4069000" />
       <workItem from="1635247375930" duration="1342000" />
       <workItem from="1635379154304" duration="3417000" />
+      <workItem from="1635442248858" duration="4138000" />
+      <workItem from="1635467748009" duration="6007000" />
     </task>
     <servers />
   </component>
