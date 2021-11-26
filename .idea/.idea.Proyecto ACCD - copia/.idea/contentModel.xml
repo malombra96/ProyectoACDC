@@ -7,12 +7,16 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="BehaviourReloj.cs" t="Include" />
+        <e p="fasores" t="Include">
+          <e p="Fasores.cs" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
           <e p="AxesBehaviour.cs" t="Include" />
           <e p="CircuitoBifasico.cs" t="Include" />
           <e p="CircuitoMonofase.cs" t="Include" />
           <e p="CircuitoResonancia.cs" t="Include" />
           <e p="CircuitoTrifasico.cs" t="Include" />
+          <e p="ConexiónDelta.cs" t="Include" />
           <e p="ConexiónEstrella.cs" t="Include" />
           <e p="ControlTamañoLetra.cs" t="Include" />
           <e p="Código_para_los circuitos_AC" t="Include">

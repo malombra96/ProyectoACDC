@@ -133,7 +133,7 @@ public class CircuitoResonancia : MonoBehaviour
     void Update () {
 
         axes.GetComponent<AxisSin>().ReferenceAssignment(uk,vr,vr,vr,2);
-        print("SEÑAL DE ENTRADA "+uk);
+//        print("SEÑAL DE ENTRADA "+uk);
         w = OVs.localScale.y;
         A = 2.04f * w - 1.327f;
         linetime += Time.deltaTime;

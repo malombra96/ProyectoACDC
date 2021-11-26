@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -73,7 +74,7 @@ public class CircuitoTrifasico : MonoBehaviour
 	/// variable para el tiempo de la señal 
 	private float linetime;
 	/// variable para el cambio de señales
-	private int  signalCase;
+	public int  signalCase;
 
 	///variable para la frecuencia de la señal
 	public BehaviourReloj memoria;
@@ -87,6 +88,11 @@ public class CircuitoTrifasico : MonoBehaviour
 	  Inicializa las varibles, toma los valores asignados a los componentes y crea los valores de las matrices
 	  de la ecuación de estado discreta
 */
+	private void OnEnable()
+	{
+		CheckToggle();
+	}
+
 	void Start()
 	{
 		w1 = OVan.localScale.y;
@@ -196,14 +202,19 @@ public class CircuitoTrifasico : MonoBehaviour
 		if (check[0].isOn)
 		{
 			signalCase = 0;
-			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal1;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.startColor= colorSignal1;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.startColor = colorSignal2;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color= colorSignal1;
 			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal2;
+
 			axes.GetComponent<AxisSin>().Reset();
 		}
 
 		if (check[1].isOn)
 		{
 			signalCase = 1;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.startColor = colorSignal3;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.startColor = colorSignal4;
 			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal3;
 			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal4;
 			axes.GetComponent<AxisSin>().Reset();
@@ -212,6 +223,8 @@ public class CircuitoTrifasico : MonoBehaviour
 		if (check[2].isOn)
 		{
 			signalCase = 2;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.startColor = colorSignal5;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.startColor = colorSignal6;
 			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal5;
 			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal6;
 			axes.GetComponent<AxisSin>().Reset();
@@ -220,6 +233,9 @@ public class CircuitoTrifasico : MonoBehaviour
 		if (check[3].isOn)
 		{
 			signalCase = 3;
+			axes.GetComponent<AxisSin>().axesLineRenderer1.startColor = colorSignal1;
+			axes.GetComponent<AxisSin>().axesLineRenderer2.startColor = colorSignal3;
+			axes.GetComponent<AxisSin>().axesLineRenderer3.startColor = colorSignal6;
 			axes.GetComponent<AxisSin>().axesLineRenderer1.material.color = colorSignal1;
 			axes.GetComponent<AxisSin>().axesLineRenderer2.material.color = colorSignal3;
 			axes.GetComponent<AxisSin>().axesLineRenderer3.material.color = colorSignal6;

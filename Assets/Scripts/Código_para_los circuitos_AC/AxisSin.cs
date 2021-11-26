@@ -141,15 +141,21 @@ public class AxisSin : MonoBehaviour {
 		{
 			case 1:
 				axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));
+				axesLineRenderer2.positionCount = 1;
+				axesLineRenderer3.positionCount = 1;
+				axesLineRenderer4.positionCount = 1;
 				break;
 			case 2:
 				axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));
 				axesLineRenderer2.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference2/1.5f*sy, zp));
+				axesLineRenderer3.positionCount = 1;
+				axesLineRenderer4.positionCount = 1;
 				break;
 			case 3:
 				axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));
 				axesLineRenderer2.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference2/1.5f*sy, zp));
 				axesLineRenderer3.SetPosition(k-1,new Vector3(xp - sx + lineTime/5*sx/2, yp-sy+reference3/1.5f*sy, zp));
+				axesLineRenderer4.positionCount = 1;
 				break;
 			case 4:
 				axesLineRenderer1.SetPosition(k-1,new Vector3(xp - sx + (lineTime/5)*(sx/2), yp-sy+reference1/1.5f*sy, zp));

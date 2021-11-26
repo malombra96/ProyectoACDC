@@ -34,6 +34,7 @@ public class CircuitoBifasico : MonoBehaviour
 // ======================================================================================================
     void Start()
     {
+        Vcpos = OVf.transform.position;
         signal_int1 = 0;     					              	// linea de tiempo en cero
         V_1 = V1.localScale.y;							// frecuencia angular iniciada 
         V_2 = V2.localScale.y;							// frecuencia angular iniciada 

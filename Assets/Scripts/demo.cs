@@ -48,8 +48,6 @@ public class demo : MonoBehaviour {
 
     void FixedUpdate()
     {
-	    
-	    
 	    axes.GetComponent<AxisSin>().ReferenceAssignment(signal_seno, signal_coseno, signal_seno2, signal_coseno2,1);
 	    
 	    linetime_c += Time.deltaTime;										//tiempo de la señal coseno
