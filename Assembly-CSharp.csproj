@@ -54,21 +54,22 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\DownPanelBehaviour.cs" />
      <Compile Include="Assets\Scripts\AxesBehaviour.cs" />
-     <Compile Include="Assets\Scripts\CircuitoBifasico.cs" />
-     <Compile Include="Assets\Scripts\CircuitoMonofase.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\CircuitoBifasico.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\CircuitoMonofase.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
-     <Compile Include="Assets\Scripts\Potencia.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\Potencia.cs" />
      <Compile Include="Assets\fasores\Fasores.cs" />
      <Compile Include="Assets\Scripts\Código_para_los circuitos_AC\AxisSin.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\Axis\circuloUnitario\CirculoUnitario.cs" />
      <Compile Include="Assets\BehaviourReloj.cs" />
-     <Compile Include="Assets\Scripts\demo.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\demo.cs" />
      <Compile Include="Assets\Scripts\General.cs" />
-     <Compile Include="Assets\Scripts\CircuitoResonancia.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\CircuitoResonancia.cs" />
      <Compile Include="Assets\Scripts\PanelBehaviour.cs" />
-     <Compile Include="Assets\Scripts\CircuitoTrifasico.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\CircuitoTrifasico.cs" />
      <Compile Include="Assets\Scripts\ControlTamañoLetra.cs" />
-     <Compile Include="Assets\Scripts\ConexiónEstrella.cs" />
-     <Compile Include="Assets\Scripts\ConexiónDelta.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\ConexiónEstrella.cs" />
+     <Compile Include="Assets\Scripts\Circuitos potencia y trifasicos\ConexiónDelta.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
