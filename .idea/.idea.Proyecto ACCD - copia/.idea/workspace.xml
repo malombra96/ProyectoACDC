@@ -20,22 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="170bee90-1990-463d-b3e5-1806aca6a40d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Proyecto ACCD - copia/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Proyecto ACCD - copia/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Proyecto ACCD - copia/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Proyecto ACCD - copia/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Principal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Principal.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Circuitos potencia y trifasicos/demo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Circuitos potencia y trifasicos/demo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/fasores/Fasores.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/fasores/Fasores.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/fasores/axis.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/fasores/axis.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/fasores/circle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/fasores/circle.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/LastBuild.buildreport" beforeDir="false" afterPath="$PROJECT_DIR$/Library/LastBuild.buildreport" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/Managed/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/Managed/Assembly-CSharp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/globalgamemanagers" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/globalgamemanagers" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/globalgamemanagers.assets" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/globalgamemanagers.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/level0" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/level0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/sharedassets0.assets" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/sharedassets0.assets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/sharedassets0.assets.resS" beforeDir="false" afterPath="$PROJECT_DIR$/Library/PlayerDataCache/Win64/Data/sharedassets0.assets.resS" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/expandedItems" beforeDir="false" afterPath="$PROJECT_DIR$/Library/expandedItems" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +127,7 @@
       <workItem from="1638189905096" duration="5667000" />
       <workItem from="1638276557164" duration="3349000" />
       <workItem from="1638824611550" duration="2998000" />
-      <workItem from="1638842297910" duration="356000" />
+      <workItem from="1638842297910" duration="865000" />
     </task>
     <servers />
   </component>
