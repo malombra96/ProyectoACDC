@@ -19,8 +19,7 @@ public class demo : MonoBehaviour {
 	// variable para determinar el periodo de la señal y generar el desfase entre las 2 señales 
     private float periodo;
 	// objeto unity scope 
-    public GameObject axes;
-    public GameObject axes2;
+	public GameObject axes;
 	// variable para generar el tiempo de las señales
 	private float linetime_s, linetime_c, linetime_s2, linetime_c2; 
 	// objeto unity aguja del medidor 
@@ -57,21 +56,21 @@ public class demo : MonoBehaviour {
 
        // print("DELTA "+linetime_s);
         v = V.localScale.y; 												
-        axes2.GetComponent<CirculoUnitario>().MagnitudVectores(v);
+        //axes.GetComponent<CirculoUnitario>().MagnitudVectores(v);
         
-        float amplitud = 2.04f * v - 1.33f;	
+        float amplitud = 0.7f * v - 0.68f;	
         
-        signal_seno = Mathf.Sin(memoria.dato * linetime_s);				//calculamos la señal seno
+        signal_seno = Mathf.Sin(memoria.dato * linetime_s);						//calculamos la señal seno
         //print("seno "+signal_seno);
         signal_coseno = amplitud*Mathf.Sin(memoria.dato * linetime_c);			//calculamos la señal coseno
         signal_seno2 = amplitud*Mathf.Sin(memoria.dato * linetime_s2);			//calculamos la señal seno
 		signal_coseno2  = amplitud*Mathf.Sin(memoria.dato * linetime_c2);		//calculamos la señal seno
-        
-        axes2.GetComponent<CirculoUnitario>().turn(memoria.dato * linetime_s, 0);
-        
-        
-		//frecuencia = (w) / (2 * Mathf.PI);											//actualizamos la frecuencia
-		//linealizamos para generar el movimiento de la aguja del medidor
+		
+		axes.GetComponent<Fasores>().Amplitud1 = amplitud;
+        axes.GetComponent<Fasores>().omega = memoria.dato;
+
+        //frecuencia = (w) / (2 * Mathf.PI);											//actualizamos la frecuencia
+        //linealizamos para generar el movimiento de la aguja del medidor
         //float angle = -(700/23)*w + (490 / 23);	
         // float pendiente = (-120-10)/(6-2);
         // float corte =  -120 - (6 * pendiente);
