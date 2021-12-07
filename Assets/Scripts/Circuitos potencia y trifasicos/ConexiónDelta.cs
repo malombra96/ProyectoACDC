@@ -22,12 +22,19 @@ public class ConexiónDelta : MonoBehaviour
 	/// Objeto de Unity asociado a la corriente de linea Ic
 	public Transform OIc;
 
+	///// Objetos de Unity asociados a la impedancia Z1
+	//public Transform OZR1, OZX1;
+	///// Objetos de Unity asociados a la impedancia Z2
+	//public Transform OZR2, OZX2;
+	///// Objetos de Unity asociados a la impedancia Z3
+	//public Transform OZR3, OZX3;
+	
 	/// Objetos de Unity asociados a la impedancia Z1
-	public Transform OZR1, OZX1;
+	public Transform OZ1;
 	/// Objetos de Unity asociados a la impedancia Z2
-	public Transform OZR2, OZX2;
+	public Transform OZ2;
 	/// Objetos de Unity asociados a la impedancia Z3
-	public Transform OZR3, OZX3;
+	public Transform OZ3;
 
 	/// Objeto de Unity que representa los ejes de graficación
 	public GameObject axes;
@@ -54,9 +61,12 @@ public class ConexiónDelta : MonoBehaviour
 	private float FIa, FIb, FIc;
 
 
+	///// valor real y reactancia del Z1, Z2 y Z3
+	//private float ZR1, ZR2, ZR3;
+	//private float ZX1, ZX2, ZX3;
 	/// valor real y reactancia del Z1, Z2 y Z3
-	private float ZR1, ZR2, ZR3;
-	private float ZX1, ZX2, ZX3;
+	private float Z1, Z2, Z3;
+
 	/// Representacion polar de Z1, Z2 y Z3
 	private float MagZ1, MagZ2, MagZ3;
 	private float FaseZ1, FaseZ2, FaseZ3;
@@ -109,23 +119,28 @@ public class ConexiónDelta : MonoBehaviour
 		Vpbc = w2;
 		Vpca = w3;
 
-		//Se adquieren las escalas de los objetos para las impedancias Z1, Z2 y Z3. 
-		ZR1 = OZR1.localScale.y;
-		ZX1 = OZX1.localScale.y;
-		ZR2 = OZR2.localScale.y;
-		ZX2 = OZX2.localScale.y;
-		ZR3 = OZR3.localScale.y;
-		ZX3 = OZX3.localScale.y;
+        ////Se adquieren las escalas de los objetos para las impedancias Z1, Z2 y Z3. 
+        //ZR1 = OZR1.localScale.y;
+        //ZX1 = OZX1.localScale.y;
+        //ZR2 = OZR2.localScale.y;
+        //ZX2 = OZX2.localScale.y;
+        //ZR3 = OZR3.localScale.y;
+        //ZX3 = OZX3.localScale.y;
 
-		//Se hace una representacion polar para cada una de las impedancias.
-		MagZ1 = Mathf.Sqrt(Mathf.Pow(ZR1, 2) + Mathf.Pow(ZX1, 2));
-		FaseZ1 = Mathf.Atan2(ZX1, ZR1) * Mathf.Rad2Deg;
+        //Se adquieren las escalas de los objetos para las impedancias Z1, Z2 y Z3.
+        Z1 = OZ1.localScale.y;
+        Z2 = OZ2.localScale.y;
+        Z3 = OZ3.localScale.y;
 
-		MagZ2 = Mathf.Sqrt(Mathf.Pow(ZR2, 2) + Mathf.Pow(ZX2, 2));
-		FaseZ2 = Mathf.Atan2(ZX2, ZR2) * Mathf.Rad2Deg;
+        //Se hace una representacion polar para cada una de las impedancias.
+        MagZ1 = Mathf.Sqrt(Mathf.Pow(Z1, 2) + Mathf.Pow(Z1, 2));
+		FaseZ1 = Mathf.Atan2(Z1, Z1) * Mathf.Rad2Deg;
 
-		MagZ3 = Mathf.Sqrt(Mathf.Pow(ZR3, 2) + Mathf.Pow(ZX3, 2));
-		FaseZ3 = Mathf.Atan2(ZX3, ZR3) * Mathf.Rad2Deg;
+		MagZ2 = Mathf.Sqrt(Mathf.Pow(Z2, 2) + Mathf.Pow(Z2, 2));
+		FaseZ2 = Mathf.Atan2(Z2, Z2) * Mathf.Rad2Deg;
+
+		MagZ3 = Mathf.Sqrt(Mathf.Pow(Z3, 2) + Mathf.Pow(Z3, 2));
+		FaseZ3 = Mathf.Atan2(Z3, Z3) * Mathf.Rad2Deg;
 
 		//Se declaran los desfases de las fuentes en una secuencia positiva.
 		FVab = 0;
@@ -191,23 +206,28 @@ public class ConexiónDelta : MonoBehaviour
 		Vpbc= w2;
 		Vpca = w3;
 
-		//Se adquieren las escalas de los objetos para las impedancias Z1, Z2 y Z3. 
-		ZR1 = OZR1.localScale.y;
-		ZX1 = OZX1.localScale.y;
-		ZR2 = OZR2.localScale.y;
-		ZX2 = OZX2.localScale.y;
-		ZR3 = OZR3.localScale.y;
-		ZX3 = OZX3.localScale.y;
+		////Se adquieren las escalas de los objetos para las impedancias Z1, Z2 y Z3. 
+		//ZR1 = OZR1.localScale.y;
+		//ZX1 = OZX1.localScale.y;
+		//ZR2 = OZR2.localScale.y;
+		//ZX2 = OZX2.localScale.y;
+		//ZR3 = OZR3.localScale.y;
+		//ZX3 = OZX3.localScale.y;
+
+		//Se adquieren las escalas de los objetos para las impedancias Z1, Z2 y Z3.
+		Z1 = OZ1.localScale.y;
+		Z2 = OZ2.localScale.y;
+		Z3 = OZ3.localScale.y;
 
 		//Se hace una representacion polar para cada una de las impedancias.
-		MagZ1 = Mathf.Sqrt(Mathf.Pow(ZR1, 2) + Mathf.Pow(ZX1, 2));
-		FaseZ1 = Mathf.Atan2(ZX1, ZR1) ;
+		MagZ1 = Mathf.Sqrt(Mathf.Pow(Z1, 2) + Mathf.Pow(Z1, 2));
+		FaseZ1 = Mathf.Atan2(Z1, Z1) * Mathf.Rad2Deg;
 
-		MagZ2 = Mathf.Sqrt(Mathf.Pow(ZR2, 2) + Mathf.Pow(ZX2, 2));
-		FaseZ2 = Mathf.Atan2(ZX2, ZR2) ;
+		MagZ2 = Mathf.Sqrt(Mathf.Pow(Z2, 2) + Mathf.Pow(Z2, 2));
+		FaseZ2 = Mathf.Atan2(Z2, Z2) * Mathf.Rad2Deg;
 
-		MagZ3 = Mathf.Sqrt(Mathf.Pow(ZR3, 2) + Mathf.Pow(ZX3, 2));
-		FaseZ3 = Mathf.Atan2(ZX3, ZR3) ;
+		MagZ3 = Mathf.Sqrt(Mathf.Pow(Z3, 2) + Mathf.Pow(Z3, 2));
+		FaseZ3 = Mathf.Atan2(Z3, Z3) * Mathf.Rad2Deg;
 
 		//Se declaran los desfases de las fuentes en una secuencia positiva.
 		FVab = 0;

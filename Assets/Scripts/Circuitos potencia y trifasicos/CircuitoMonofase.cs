@@ -64,33 +64,26 @@ public class CircuitoMonofase : MonoBehaviour
     {
 	    
 	    
-        axes.GetComponent<AxisSin>().ReferenceAssignment(signal_int1, signal_Out1, signal_Out1, signal_coseno2,2);
+        //axes.GetComponent<AxisSin>().ReferenceAssignment(signal_int1, signal_Out1, signal_Out1, signal_coseno2,2);
 	    
         linetime_int1 += Time.deltaTime;										//tiempo de la señal seno 
         linetime_int2 += Time.deltaTime;										//tiempo de la señal seno 
         linetime_Out1 += Time.deltaTime;										//tiempo de la señal seno 
 
         V_1 = V1.localScale.y;                                              //actualizamos la frecuencia 
-                                                                            //V_2 = V2.localScale.y; 												//actualizamos la frecuencia 
-
-        //float amplitud1 = 2.04f * V_1 - 1.33f;
-        //float amplitud2 = 2.04f * V_2 - 1.33f;
-        //float amplitud3 = amplitud1 + amplitud2;
-
-        //Se adquieren las escalas de los objetos para las impedancias Z1, Z2 y Z3. 
+                                                                            //V_2 = V2.localScale.y; 												//actualizamos la frecuenci
+        if (V_1 == V1.GetComponent<ControlTamañoLetra>().valorMin)
+        {
+            V_1 = 0;
+        }
+        else
+        {
+            V_1 /= V1.GetComponent<ControlTamañoLetra>().valorMax;
+        }
 
 
         CheckToggle();
 
-        if (ZR == 0.5f)
-        {
-            ZR = 0;
-        }
-
-        if (ZX == 0.5f)
-        {
-            ZX = 0;
-        }
 
         //Se hace una representacion polar para cada una de las impedancias.
         MagZ = Mathf.Sqrt(Mathf.Pow(ZR, 2) + Mathf.Pow(ZX, 2));
@@ -98,11 +91,14 @@ public class CircuitoMonofase : MonoBehaviour
 
 
         signal_int1 = V_1*Mathf.Sin(memoria.dato * linetime_int1);		//calculamos la señal seno
-        //signal_int2 = amplitud2*Mathf.Sin(memoria.dato * linetime_int2);		//calculamos la señal seno
-        signal_Out1 = V_1*Mathf.Sin(memoria.dato * linetime_Out1 + FaseZ);		//calculamos la señal seno
+        signal_Out1 = MagZ * Mathf.Sin(memoria.dato * linetime_Out1 + FaseZ);		//calculamos la señal seno
 
-        //OVf.localScale = new Vector3( signal_Out1,signal_Out1,signal_Out1);
-        //OVf.position = Vcpos - new Vector3(0, signal_Out1/2, 0);
+
+        axes.GetComponent<Fasores>().Amplitud1 = V_1;
+        axes.GetComponent<Fasores>().Amplitud2 = V_1;
+        axes.GetComponent<Fasores>().Angulo2 = Mathf.Rad2Deg * FaseZ;
+        axes.GetComponent<Fasores>().omega = memoria.dato;
+
         if (signal_int1 > 0)
         {
             OIa.localScale = new Vector3(0.01f, 0.01f, signal_int1 * 1/100);
@@ -128,5 +124,29 @@ public class CircuitoMonofase : MonoBehaviour
             ZX = - OZX.localScale.y;
         }
 
+        if (ZR == OZR.GetComponent<ControlTamañoLetra>().valorMin)
+        {
+            ZR = 0;
+        }
+        else
+        {
+            ZR /= OZR.GetComponent<ControlTamañoLetra>().valorMax;
+        }
+
+
+        if (-ZX == OZX.GetComponent<ControlTamañoLetra>().valorMin)
+        {
+            ZX = 0;
+        }
+        else if (ZX == OZX.GetComponent<ControlTamañoLetra>().valorMin)
+        {
+            ZX = 0;
+        }
+        else
+        {
+            ZX /= OZX.GetComponent<ControlTamañoLetra>().valorMax;
+        }
+
+        
     }
 }
