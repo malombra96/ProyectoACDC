@@ -58,15 +58,29 @@ public class demo : MonoBehaviour {
         v = V.localScale.y; 												
         //axes.GetComponent<CirculoUnitario>().MagnitudVectores(v);
         
-        float amplitud = 0.7f * v - 0.68f;	
+        if(v == V.GetComponent<ControlTamañoLetra>().valorMin)
+        {
+            v = 0;
+        }
+        else
+        {
+            v /= V.GetComponent<ControlTamañoLetra>().valorMax;
+        }
+
+        float amplitud = v;	
         
         signal_seno = Mathf.Sin(memoria.dato * linetime_s);						//calculamos la señal seno
         //print("seno "+signal_seno);
         signal_coseno = amplitud*Mathf.Sin(memoria.dato * linetime_c);			//calculamos la señal coseno
         signal_seno2 = amplitud*Mathf.Sin(memoria.dato * linetime_s2);			//calculamos la señal seno
-		signal_coseno2  = amplitud*Mathf.Sin(memoria.dato * linetime_c2);		//calculamos la señal seno
-		
-		axes.GetComponent<Fasores>().Amplitud1 = amplitud;
+		signal_coseno2  = amplitud*Mathf.Sin(memoria.dato * linetime_c2);       //calculamos la señal seno
+
+        axes.GetComponent<Fasores>().fasor2.gameObject.SetActive(false);
+        axes.GetComponent<Fasores>().lineFasor2.gameObject.SetActive(false);
+        axes.GetComponent<Fasores>().point2.gameObject.SetActive(false);
+
+
+        axes.GetComponent<Fasores>().Amplitud1 = amplitud;
         axes.GetComponent<Fasores>().omega = memoria.dato;
 
         //frecuencia = (w) / (2 * Mathf.PI);											//actualizamos la frecuencia

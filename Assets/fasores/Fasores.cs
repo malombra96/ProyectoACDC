@@ -129,8 +129,8 @@ public class Fasores : MonoBehaviour {
 		fasor1.eulerAngles = new Vector3(0, 0, (tiempo + desfase1) * Mathf.Rad2Deg - 90);
 		fasor2.eulerAngles = new Vector3(0,0,(tiempo + desfase2) * Mathf.Rad2Deg -90);
 		
-		point1.position = 	 new Vector3(Rx, (yPos1 * ScaleFactor + Ry)  ,0);
-		point2.position = 	 new Vector3(Rx, (yPos2 * ScaleFactor + Ry)  ,0);
+		point1.position = 	 new Vector3(Rx, (yPos1 * ScaleFactor + Ry)  , transform.position.z);
+		point2.position = 	 new Vector3(Rx, (yPos2 * ScaleFactor + Ry)  , transform.position.z);
 
 		TraceLineRenderer( lineData1, lineRenderer1);
 		TraceLineRenderer( lineData2, lineRenderer2);
